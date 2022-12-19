@@ -1,0 +1,26 @@
+body {
+  background-color: #c5c5c5;
+}
+
+img {
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 50%;
+  border-style: outset;
+  border-width: 3rem;
+  border-color: #ab5dee;
+}
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  display: flex;
+  color: #1da11f;
+  font-size: 5rem;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+}
