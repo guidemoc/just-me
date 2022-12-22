@@ -10,10 +10,13 @@ img {
   border-width: 3rem;
   border-color: #ab5dee;
 }
+
 div {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+  margin-top: -750px;
 }
 
 p {
@@ -23,4 +26,15 @@ p {
   font-weight: bolder;
   align-items: center;
   justify-content: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+canvas {
+  display: block;
+  z-index: 2;
 }

@@ -1,55 +1,65 @@
-// Pegando o elemento do Canvas
+// getting the canvas element
 const c = document.getElementById("matrix");
 
-// Definindo o seu contexto
+// defining the canvas context
 const ctx = c.getContext("2d");
 
-// definindo o canvas com tamanho máximo da tela
+// making the canvas full screen
 c.height = window.innerHeight;
 c.width = window.innerWidth;
 
-// letras do Matrix Rain
-// ver mais em: https://bit.ly/3yFJoU3
-const letters = ["日","ﾊ","ﾐ","ﾋ","ｰ","ｳ","ｼ","ﾅ","ﾓ","ﾆ","ｻ","ﾜ","ﾂ","ｵ","ﾘ","ｱ","ﾎ","ﾃ","ﾏ","ｹ","ﾒ","ｴ","ｶ","ｷ","ﾑ","ﾕ","ﾗ","ｾ","ﾈ","ｽ","ﾀ","ﾇ","ﾍ",":","・",".","=","*","+","-","<",">","¦","｜","ﾘ"];
+// letters used on Matrix rain
+// more on: https://bit.ly/3yFJoU3
+const letters = [
+  "Ha",
+  "Haha",
+  "HaHa",
+  "Haha!",
+  "Ha!",
+];
 
 const fontSize = 18;
 
-// definindo quantas colunas serão necessárias pelo tamanho da tela e fonte
+// defining how many columns to print based on canvas width and font size
 const columns = c.width / fontSize;
 
-// criando um array para cada gota, sempre iniciando na posição do y=1
-const drops = new Array(Math.floor(columns)).fill(1);
+// creating an array of drops to each column
+let drops = [];
 
+// starting every drop at a y=1 position
+for (let x = 0; x < columns; x++) drops[x] = 1;
+
+//drawing the characters
 function draw() {
-  // preenchendo a tela toda de preto com opacidade
-  // esse truque da opacidade será útil para o efeito 
-  // das letras sumindo aos poucos
-  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  // painting the background
+  // the trick here is to use opacity
+  // so it will fade out with time
+  ctx.fillStyle = "rgba(197, 197, 197, 0.05)";
   ctx.fillRect(0, 0, c.width, c.height);
 
-  // definindo a cor e estilo da fonte
-  ctx.fillStyle = "#0F0";
+  // defining font styles (color and font family/size)
+  ctx.fillStyle = "#ab5dee";
   ctx.font = `${fontSize}px arial`;
 
+  // drawing the characters
   for (let i = 0; i < drops.length; i++) {
-    // pegando uma letra randomicamente no nosso array
+    // get a random letter from the array
     const text = letters[Math.floor(Math.random() * letters.length)];
 
-    // escrevendo na tela
+    // drawing the character
     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-    // resetando a posição da gota ao chegar no fim
-    if (drops[i] * fontSize > c.height && Math.random() > 0.95) {
+    // moving the drop to the beginning of the canvas when it reaches the bottom
+    // or when the random expression is true in order to make the rain randomly
+    if (drops[i] * fontSize > c.height && Math.random() > 0.975)
       drops[i] = 0;
-    }
 
-    // movendo as gotas no eixo y
+    // moving the drop in the Y coordinate
     drops[i]++;
   }
 
-  // chamada recursiva para animar quadro a quadro
+  // recursive call to draw frame by frame
   window.requestAnimationFrame(draw);
 }
 
-// chamando a função criada
 draw()
