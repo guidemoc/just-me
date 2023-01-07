@@ -36,7 +36,7 @@ function draw() {
     if (i % 2 == 0) ctx.fillStyle = "#ab5dee";
     else ctx.fillStyle = "#1da11f";
 
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    ctx.fillText(text, i * fontSize , drops[i] * fontSize);
 
     if (drops[i] * fontSize > c.height && Math.random() > 0.975) drops[i] = 0;
 
